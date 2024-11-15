@@ -1,0 +1,9 @@
+my_app/
+├── app.py (main application file)
+├── templates/ (HTML files)
+│   ├── layout.html (base layout)
+│   ├── index.html (list pings)
+│   ├── create.html (create ping)
+├── static/ (CSS/JS assets, if any)
+├── models.py (database models)
+└── database.db (SQLite database file)
