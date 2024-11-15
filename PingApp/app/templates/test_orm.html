@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test ORM</title>
+</head>
+<body>
+    <h1>Ping Test Results</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>IP Address</th>
+            <th>Status</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for ping in pings %}
+        <tr>
+            <td>{{ ping.id }}</td>
+            <td>{{ ping.ip_address }}</td>
+            <td>{{ ping.status }}</td>
+            <td>{{ ping.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Home</a>
+</body>
+</html>
