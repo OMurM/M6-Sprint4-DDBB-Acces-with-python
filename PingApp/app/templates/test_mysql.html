@@ -6,8 +6,13 @@
     <title>Test MySQL</title>
 </head>
 <body>
-    <h1>Test MySQL</h1>
+    <h1>Ping Table</h1>
     <pre>{{ output }}</pre>
+    <form action="{{ url_for('add') }}" method="POST">
+        <input type="text" name="ip_address" placeholder="IP Address" required>
+        <input type="text" name="status" placeholder="Status" required>
+        <button type="submit">Add</button>
+    </form>
     <a href="{{ url_for('index') }}">Back to Home</a>
 </body>
 </html>
