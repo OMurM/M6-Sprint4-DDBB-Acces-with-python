@@ -4,25 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test ORM</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Ping Test Results</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>IP Address</th>
-            <th>Status</th>
-            <th>Timestamp</th>
-        </tr>
+    <h1>Ping Table</h1>
+
+    <h2>Records</h2>
+    <ul>
         {% for ping in pings %}
-        <tr>
-            <td>{{ ping.id }}</td>
-            <td>{{ ping.ip_address }}</td>
-            <td>{{ ping.status }}</td>
-            <td>{{ ping.timestamp }}</td>
-        </tr>
+            <li>
+                ID: {{ ping.id }}, IP Address: {{ ping.ip_address }}, Status: {{ ping.status }},
+                Timestamp: {{ ping.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+            </li>
         {% endfor %}
-    </table>
-    <a href="/">Back to Home</a>
+    </ul>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
 </body>
 </html>
