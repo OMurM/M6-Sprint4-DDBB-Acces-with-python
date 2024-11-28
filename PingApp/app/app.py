@@ -11,8 +11,18 @@ def index():
 def test_mysql():
     try:
         result = subprocess.run(['python', 'appconselect.py', 'fetch'], capture_output=True, text=True)
-        output = result.stdout
-        return render_template('test_mysql.html', output=output)
+        output = result.stdout.strip()
+
+        records = []
+        if output:
+            for line in output.splitlines():
+                parts = line.split(", ")
+                if len(parts) == 3:
+                    record = (int(parts[0].split(": ")[1]), parts[1].split(": ")[1], parts[2].split(": ")[1])  # Parse ID, IP, and Status
+                    records.append(record)
+
+        return render_template('test_mysql.html', records=records)
+
     except Exception as e:
         return f"An error occurred while running the MySQL test: {e}"
 
@@ -32,7 +42,7 @@ def add():
     subprocess.run(['python', 'appconselect.py', 'insert'], input=f"{ip_address}\n{status}\n", text=True)
     return redirect(url_for('test_mysql'))
 
-@app.route('/delete/<int:id>')
+@app.route('/delete/<int:id>', methods=['POST'])
 def delete(id):
     subprocess.run(['python', 'appconselect.py', 'delete'], input=f"{id}\n", text=True)
     return redirect(url_for('test_mysql'))
